@@ -61,7 +61,7 @@ def find_silver_token():
 
     dist=3
     for token in R.see():
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -65<token.rot_y<65:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -50<token.rot_y<50:
             dist=token.dist
 	    rot_y=token.rot_y
     if dist==3:
@@ -124,9 +124,27 @@ def Grab():
 	    drive(-20,2)
 	    turn(-30,2)
 	    
+################################################################################################################################
+
+# DEFINING THE FUNCTION TO AVOID THE ROBOT HIT THE WALLS
+
+def find_walls(dist_left, dist_right):
+	if (dist_left > dist_right):
+		print("Turn left a bit, there is a wall on the right at this distance:" + str(dist_right))
+		turn(-20, 0.2)
+			
+	elif (dist_left < dist_right):
+		print("Turn right a bit, there is a wall on the left at this distance:" + str(dist_left))
+		turn(20,0.2)
+			
+	else:
+		print("Similar distance from left and right golden token")
+		print("Distance of the wall on the left:" + str(dist_left))
+		print("Distance of the wall on the right:" + str(dist_right))
+	    
 ################################################################################################################################	    
 	    
-#DEFINING THE MAIN FUNCTION
+# DEFINING THE MAIN FUNCTION
 
 # I decided to define a main function that will be called later, it is not mandatory but i decided to go in this way
 
@@ -164,13 +182,13 @@ def main():
 				print("Right a bit...")
 				turn(8, 0.2)
 # if the robot is close to a wall (golden token), he has to turn to avoid hitting it
+# we make the robot turns using the function find_walls
 # if it is close to a wall on the right it turns left
 # if it is close to a wall on the left it turns right	
 			
 		if(dist_G<gold_th and dist_G!=-1):
-			if dist_left>dist_right:
-				turn(-8,0.2)
-			elif dist_right>dist_left:
-				turn(8,0.2)
+			find_walls(dist_left, dist_right)
+			
+# MAIN CALL			
 				
 main()
