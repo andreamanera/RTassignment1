@@ -1,8 +1,12 @@
-Python Robotics Simulator
+Research Track 1 first assignment
 ================================
 
-This is a simple, portable robot simulator developed by [Student Robotics](https://studentrobotics.org).
-Some of the arenas and the exercises have been modified for the Research Track I course
+This first assignment is based on a simple, portable robot simulator developed by [Student Robotics](https://studentrobotics.org).
+Some of the arenas and the exercises have been modified for the Research Track I course.
+The task for this assignment is to make the robot move counterclockwisely in the environment made of golden and silver boxes. The robot has to catch the silver tokens and let them behind himself and it has also to avoid the golden tokens, that forms the walls of the environment in which the robot moves.
+
+* ## **The robot**
+<img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/robot.png">
 
 Installing and running
 ----------------------
