@@ -170,7 +170,7 @@ def main():
 			drive(100,0.05)
 
 # if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position
-# it adjusts its position
+# it adjusts its position in the environement
 			
 		if(dist_S<silver_th and dist_S!=-1):
 			if dist_S < d_th:
