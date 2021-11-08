@@ -121,6 +121,27 @@ def Grab():
 	    R.release()
 	    drive(-20,2)
 	    turn(-30,2)
+################################################################################################################################
+
+#DEFINING THE FUNCTION TO ADJUST THE ROBOT POSITION WHEN A TOKEN IS SEEN
+
+def adjust_position(dist_S, rot_S):
+
+#    Function to adjust the position of the robot when we are close to a silver token
+#    Args: dist_S (float): distance of the closest silver token
+#	   rot_S (float): angle between the robot and the silver token
+	if dist_S < d_th:
+		print("Found it!")
+		Grab()
+	elif -a_th<=rot_S<=a_th:
+		drive(35, 0.2)
+	    	print("Ah, that'll do.")
+	elif rot_S < -a_th:
+		print("Left a bit...")
+		turn(-8, 0.2)
+	elif rot_S > a_th:
+		print("Right a bit...")
+		turn(8, 0.2)
 	    
 ################################################################################################################################
 
@@ -128,7 +149,7 @@ def Grab():
 
 def avoid_walls(dist_left, dist_right):
 
-#    Function for avoid the walls when detected
+#    Function to avoid the walls when detected
 #    Args: dist_left (float): distance of the closest golden token on robot's left
 #	   dist_right (float): distance of the closest golden token on robot's right
 
@@ -170,21 +191,11 @@ def main():
 			drive(100,0.05)
 
 # if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position
-# it adjusts its position in the environement
+# it adjusts its position in the environement using the function adjust_position
 			
 		if(dist_S<silver_th and dist_S!=-1):
-			if dist_S < d_th:
-				print("Found it!")
-				Grab()
-	    		elif -a_th<=rot_S<=a_th:
-	    			drive(35, 0.2)
-	    			print("Ah, that'll do.")
-		    	elif rot_S < -a_th:
-				print("Left a bit...")
-				turn(-8, 0.2)
-			elif rot_S > a_th:
-				print("Right a bit...")
-				turn(8, 0.2)
+			adjust_position(dist_S, rot_S)
+			
 # if the robot is close to a wall (golden token), he has to turn to avoid hitting it
 # we make the robot turns using the function avoid_walls
 # if it is close to a wall on the right it turns left
