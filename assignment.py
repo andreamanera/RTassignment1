@@ -23,12 +23,11 @@ silver_th=1.5
 #DEFINING FUNCTION TO MAKE THE ROBOT MOVE
 
 def drive(speed, seconds):
-    """
-    Function for setting a linear velocity
-    
-    Args: speed (int): the speed of the wheels
-	  seconds (int): the time interval
-    """
+
+#    Function for setting a linear velocity
+#    Args: speed (int): the speed of the wheels
+#	  seconds (int): the time interval
+
     R.motors[0].m0.power = speed
     R.motors[0].m1.power = speed
     time.sleep(seconds)
@@ -36,12 +35,11 @@ def drive(speed, seconds):
     R.motors[0].m1.power = 0
 
 def turn(speed, seconds):
-    """
-    Function for setting an angular velocity
-    
-    Args: speed (int): the speed of the wheels
-	  seconds (int): the time interval
-    """
+
+#    Function for setting an angular velocity
+#    Args: speed (int): the speed of the wheels
+#	  seconds (int): the time interval
+
     R.motors[0].m0.power = speed
     R.motors[0].m1.power = -speed
     time.sleep(seconds)
@@ -102,11 +100,11 @@ def find_golden_token_left():
    	return dist
 
 def find_golden_token_right():
-    """
-    Function to find the closest golden token on the right of the robot
-    Returns:
-	dist (float): distance of the closest golden token on robot's right (-1 if no golden token is detected)
-    """
+
+#    Function to find the closest golden token on the right of the robot
+#    Returns:
+#	dist (float): distance of the closest golden token on robot's right (-1 if no golden token is detected)
+
     dist=100
     for token in R.see():
         if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and 70<token.rot_y<110:
@@ -128,7 +126,12 @@ def Grab():
 
 # DEFINING THE FUNCTION TO AVOID THE ROBOT HIT THE WALLS
 
-def find_walls(dist_left, dist_right):
+def avoid_walls(dist_left, dist_right):
+
+#    Function for avoid the walls when detected
+#    Args: dist_left (float): distance of the closest golden token on robot's left
+#	   dist_right (float): distance of the closest golden token on robot's right
+
 	if (dist_left > dist_right):
 		print("Turn left a bit, there is a wall on the right at this distance:" + str(dist_right))
 		turn(-20, 0.2)
@@ -154,19 +157,20 @@ def main():
 
 	while 1:
 
-# we need to update de information about tokens position in every loop	
+# we need to update the information about tokens position in every loop	
 		dist_S, rot_S=find_silver_token()
 		dist_G, rot_G=find_golden_token_front()
 		dist_left=find_golden_token_left()
 		dist_right=find_golden_token_right()
 
-# here we check if the robot is close to a silver or to a golden token, if it isn't close to any token we move straight		
+# here we check if the robot is close to a silver or to a golden token, if it isn't close to any token we move straight
+		
 		if(dist_G>gold_th and dist_S>silver_th) or (dist_G>gold_th and dist_S==-1):
 			print("I go straight")
 			drive(100,0.05)
 
 # if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position
-# it adjusts its position and tries again to catch the token
+# it adjusts its position
 			
 		if(dist_S<silver_th and dist_S!=-1):
 			if dist_S < d_th:
@@ -182,12 +186,12 @@ def main():
 				print("Right a bit...")
 				turn(8, 0.2)
 # if the robot is close to a wall (golden token), he has to turn to avoid hitting it
-# we make the robot turns using the function find_walls
+# we make the robot turns using the function avoid_walls
 # if it is close to a wall on the right it turns left
 # if it is close to a wall on the left it turns right	
 			
 		if(dist_G<gold_th and dist_G!=-1):
-			find_walls(dist_left, dist_right)
+			avoid_walls(dist_left, dist_right)
 			
 # MAIN CALL			
 				
