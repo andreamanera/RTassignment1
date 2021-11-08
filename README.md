@@ -168,7 +168,7 @@ have as `marker_type` `MARKER_TOKEN_SILVER`, thanks to this function we can cons
 def find_silver_token():
     dist=3
     for token in R.see():
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -70<token.rot_y<70:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -50<token.rot_y<50:
             dist=token.dist
 	    rot_y=token.rot_y
     if dist==3:
