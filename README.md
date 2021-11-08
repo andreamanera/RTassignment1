@@ -14,34 +14,27 @@ The task for this assignment is to make the robot move counterclockwisely in the
 * ## **The golden token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token.png">
 
-* ## **The silver token**
+* ## **The environment token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/maze.png">
 
 Installing and running
 ----------------------
 
 The simulator requires a Python 2.7 installation, the [pygame](http://pygame.org/) library, [PyPyBox2D](https://pypi.python.org/pypi/pypybox2d/2.1-r331), and [PyYAML](https://pypi.python.org/pypi/PyYAML/).
-
-Once the dependencies are installed, simply run the `test.py` script to test out the simulator.
-
-## Exercise
------------------------------
-
-To run one or more scripts in the simulator, use `run.py`, passing it the file names. 
-
-I am proposing you three exercises, with an increasing level of difficulty.
-The instruction for the three exercises can be found inside the .py files (exercise1.py, exercise2.py, exercise3.py).
-
-When done, you can run the program with:
+If the dependencies are not installed you can install them using these commands:
 
 ```bash
-$ python run.py exercise1.py
+$ sudo apt-get install python-dev python-pip python-pygame python-yaml`
 ```
 
-You have also the solutions of the exercises (folder solutions)
+``` bash
+$ sudo pip install pypybox2d`
+```
+
+Once the dependencies are installed, get inside the directory on the shell, and then run the game using:
 
 ```bash
-$ python run.py solutions/exercise1_solution.py
+$ python2 run.py assignment.py
 ```
 
 Robot API
@@ -107,3 +100,6 @@ for m in markers:
 ```
 
 [sr-api]: https://studentrobotics.org/docs/programming/sr/
+
+Functions
+---------
