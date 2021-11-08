@@ -147,3 +147,34 @@ def turn(speed, seconds):
     R.motors[0].m0.power = 0
     R.motors[0].m1.power = 0
 ```
+
+### find_silver_token() ###
+
+The `find_silver_token()` function is used to find all the silver tokens around the robot. The robot can see the silver token thanks to the method `R.see()`. Since we want only silver tokens, we want to
+have as `marker_type` `MARKER_TOKEN_SILVER`, thanks to this function we can consider only the silver tokens that are at a at a maximum distance of `3` from the robot and within the following angle
+`-50°<\alpha<50°`.
+
+<p align="center">
+<img src="https://github.com/andreamanera/RTassignment1/blob/main/images/findStoken.png">
+</p>
+                                                   
+* Arguments 
+  - None.
+* Returns
+  - `dist` distance of the closest silver token (-1 if no silver token is detected)
+  - `rot_y` angle between the robot and the silver token (-1 if no silver token is detected)
+* Code
+```python
+def find_silver_token():
+    dist=3
+    for token in R.see():
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -70<token.rot_y<70:
+            dist=token.dist
+	    rot_y=token.rot_y
+    if dist==3:
+	return -1, -1
+    else:
+   	return dist, rot_y
+```
+
+
