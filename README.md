@@ -3,7 +3,7 @@ Research Track 1 first assignment
 
 This first assignment is based on a simple, portable robot simulator developed by [Student Robotics](https://studentrobotics.org).
 Some of the arenas and the exercises have been modified for the Research Track I course.
-The task for this assignment is to make the robot move counterclockwisely in the environment made of golden and silver boxes. The robot has to catch the silver tokens and let them behind himself and it has also to avoid the golden tokens, that forms the walls of the environment in which the robot moves.
+The task for this assignment is to make the robot move counterclockwisely in the environment made of golden and silver boxes. The robot has to catch the silver tokens and let them behind itself and it has also to avoid the golden tokens, that forms the walls of the environment in which the robot moves.
 
 * ## **The robot**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/robot.png">
@@ -14,7 +14,7 @@ The task for this assignment is to make the robot move counterclockwisely in the
 * ## **The golden token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token.png">
 
-* ## **The environment token**
+* ## **The environment**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/maze.png">
 
 Installing and running
@@ -24,11 +24,11 @@ The simulator requires a Python 2.7 installation, the [pygame](http://pygame.org
 If the dependencies are not installed you can install them using these commands:
 
 ```bash
-$ sudo apt-get install python-dev python-pip python-pygame python-yaml`
+$ sudo apt-get install python-dev python-pip python-pygame python-yaml
 ```
 
 ``` bash
-$ sudo pip install pypybox2d`
+$ sudo pip install pypybox2d
 ```
 
 Once the dependencies are installed, get inside the directory on the shell, and then run the game using:
@@ -103,3 +103,43 @@ for m in markers:
 
 Functions
 ---------
+
+I have implemented some functions to make the robot behave properly. Some of these are easy to understand while others need an explanation to correctly understand the behavior that I wanted the robot to have
+while moving into the environment.
+
+### drive() ###
+
+the `drive()`  function was created to allow the robot to move straight, it can go forward, giving to `speed`parameter a positive value, or it can go backward giving to `speed` parameter a negative value
+
+* Arguments 
+  - `speed`, the linear velocity that we want the robot to assume.
+  - `seconds`, the amount of seconds we want to drive.
+* Returns
+  - None.
+* Code
+```python
+def drive(speed, seconds):
+    R.motors[0].m0.power = speed
+    R.motors[0].m1.power = speed
+    time.sleep(seconds)
+    R.motors[0].m0.power = 0
+    R.motors[0].m1.power = 0
+```
+
+### turn() ###
+The `turn()` functions permits the robot to turn on itself.
+
+* Arguments 
+  - `speed`, the angular velocity that we want the robot to assume.
+  - `seconds`, the amount of seconds we want the robot to turn.
+* Returns
+  - None.
+* Code
+```python
+def turn(speed, seconds):
+    R.motors[0].m0.power = speed
+    R.motors[0].m1.power = -speed
+    time.sleep(seconds)
+    R.motors[0].m0.power = 0
+    R.motors[0].m1.power = 0
+```
