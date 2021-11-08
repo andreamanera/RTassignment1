@@ -11,9 +11,10 @@ The task for this assignment is to make the robot move counterclockwisely in the
 * ## **The silver token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token_silver.png">
 
-* ##**The golden token**
+* ## **The golden token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token.png">
-* ## **The environment**
+
+* ## **The silver token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/maze.png">
 
 Installing and running
