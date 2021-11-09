@@ -113,6 +113,12 @@ def find_golden_token_right():
 	return -1
     else:
    	return dist
+   	
+################################################################################################################################
+
+#DEFINING THE FUNCTION TO GRAB THE TOKEN 	
+   	
+   	
 def Grab():
  	if R.grab():
             print("Gotcha!")
@@ -121,6 +127,7 @@ def Grab():
 	    R.release()
 	    drive(-20,2)
 	    turn(-30,2)
+	    
 ################################################################################################################################
 
 #DEFINING THE FUNCTION TO ADJUST THE ROBOT POSITION WHEN A TOKEN IS SEEN
