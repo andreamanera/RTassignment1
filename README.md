@@ -5,19 +5,19 @@ This first assignment is based on a simple, portable robot simulator developed b
 Some of the arenas and the exercises have been modified for the Research Track I course.
 The task for this assignment is to make the robot move counterclockwisely in the environment made of golden and silver boxes. The robot has to catch the silver tokens and let them behind itself and it has also to avoid the golden tokens, that forms the walls of the environment in which the robot moves.
 
-* ## **The robot**
+* **The robot**
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/robot.png">
 
-* ## **The silver token**
+* **The silver token**
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token_silver.png">
 
-* ## **The golden token**
+* **The golden token**
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token.png">
 
-* ## **The environment**
+* **The environment**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/maze.png">
 
-* ## **The robot moving towards a silver token**
+* **The robot moving towards a silver token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/image1.png">
 
 Installing and running
@@ -152,7 +152,7 @@ def turn(speed, seconds):
 
 The `find_silver_token()` function is used to find all the silver tokens around the robot. The robot can see the silver token thanks to the method `R.see()`. Since we want only silver tokens, we want to
 have as `marker_type` `MARKER_TOKEN_SILVER`, thanks to this function we can consider only the silver tokens that are at a at a maximum distance of `3` from the robot and within the following angle
-`-50°<\alpha<50°`.
+`-50°<\alpha<50°`, this is better understandable in the image below.
 
 <p align="center">
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/findStoken.png">
@@ -177,4 +177,92 @@ def find_silver_token():
    	return dist, rot_y
 ```
 
+### find_golden_token_front() ###
 
+The `find_golden_token_front()` function is used to find the golden tokens in front of the robot so that it can avoid them, the mechanism is the same as seen for the function `find_silver_token()`, what
+changes is the value of the parameters, first the `marker_type` is  `MARKER_TOKEN_GOLDEN` and also the angle change: `-35°<\alpha<35°`.
+
+* Arguments 
+  - None.
+* Returns
+  - `dist` distance of the closest golden token (-1 if no golden token is detected)
+  - `rot_y` angle between the robot and the golden token (-1 if no golden token is detected)
+* Code
+```python
+def find_golden_token_front():
+	dist=100
+    	for token in R.see():
+        	if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -35<token.rot_y<35:
+            		dist=token.dist
+            		rot_y=token.rot_y
+   	 if dist==100:
+		return -1, -1
+    	else:
+   		return dist, rot_y
+```
+
+### find_golden_token_left() ###
+
+The `find_golden_token_left()` function, as the `find_golden_token_right()` function that will be commented on later, is necessary to find the distance between the robot and the wall to its left and so
+decide if it needs to turn left or right. The mechanism is the same as before, but as we look for tokens to the left of the robot the angle chosen is: `-110°<\alpha<-70°`
+
+* Arguments 
+  - None.
+* Returns
+  - `dist` distance of the closest golden token on robot's left (-1 if no golden token is detected)
+* Code
+```python
+def find_golden_token_left():
+	dist=100
+    	for token in R.see():
+        	if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -110<token.rot_y<-70:
+            		dist=token.dist
+            		rot_y=token.rot_y
+   	 if dist==100:
+		return -1
+    	else:
+   		return dist
+```
+### find_golden_token_right() ###
+
+as mentioned above the function `find_golden_token_right()` is used for the same purpose as the function `find_golden_token_left()`, but since we are looking for token on robot's right the angle chosen is:
+`70°<\alpha<110°`.
+
+* Arguments 
+  - None.
+* Returns
+  - `dist` distance of the closest golden token on robot's right (-1 if no golden token is detected)
+* Code
+```python
+def find_golden_token_right():
+	dist=100
+    	for token in R.see():
+        	if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and 70<token.rot_y<110:
+            		dist=token.dist
+            		rot_y=token.rot_y
+   	 if dist==100:
+		return -1
+    	else:
+   		return dist
+```
+
+### Grab() ###
+
+the `Grab()` function contains the routine to move the robot after the token has been grabbed, after this the robot turns, drive for a short distance, leave the token and then it comes back to its original
+position.
+
+* Arguments 
+  - None.
+* Returns
+  - None
+* Code
+```python
+def Grab():
+ 	if R.grab():
+            print("Gotcha!")
+	    turn(30, 2)
+	    drive(20,2)
+	    R.release()
+	    drive(-20,2)
+	    turn(-30,2)
+```
