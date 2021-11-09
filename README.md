@@ -350,7 +350,7 @@ Then is checked if the robot is close to a silver or to a golden token, if it is
 			drive(100,0.05)
 ```
 
-Tow if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position it adjusts its position in the environement calling the function adjust_position.
+Now if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position it adjusts its position in the environement calling the function adjust_position.
 
 ```python
 		if(dist_S<silver_th and dist_S!=-1):
