@@ -266,3 +266,103 @@ def Grab():
 	    drive(-20,2)
 	    turn(-30,2)
 ```
+
+### adjust_position(dist_S, rot_S) ###
+
+the `adjust_position(dist_S, rot_S)` function contains the routine to grab the token, if the robot is in the right position, and to move the robot in the correct position if it is in the wrong position to
+grab the token.
+
+* Arguments 
+  - `dist_S` distance of the closest silver token
+  - `rot_S` angle between the robot and the silver token
+* Returns
+  - None.
+* Code
+```python
+def adjust_position(dist_S, rot_S):
+	if dist_S < d_th:
+		print("Found it!")
+		Grab()
+	elif -a_th<=rot_S<=a_th:
+		drive(35, 0.2)
+	    	print("Ah, that'll do.")
+	elif rot_S < -a_th:
+		print("Left a bit...")
+		turn(-8, 0.2)
+	elif rot_S > a_th:
+		print("Right a bit...")
+		turn(8, 0.2)
+```
+
+### avoid_walls(dist_left, dist_right) ###
+
+the `avoid_walls(dist_left, dist_right)` function is necessary to check if the wall is closer to the right or to the left and then move the robot in the right way; if the robot is closer to the wall on the
+left it turns right, if it is closer to the wall on the right it turn left.
+
+* Arguments 
+  - `dist_left` distance of the golden token on robot's left
+  - `dist_right` distance of the golden token on robot's right
+* Returns
+  - None.
+* Code
+```python
+def avoid_walls(dist_left, dist_right):
+
+	if (dist_left > dist_right):
+		print("Turn left a bit, there is a wall on the right at this distance:" + str(dist_right))
+		turn(-20, 0.2)
+			
+	elif (dist_left < dist_right):
+		print("Turn right a bit, there is a wall on the left at this distance:" + str(dist_left))
+		turn(20,0.2)
+			
+	else:
+		print("Similar distance from left and right golden token")
+		print("Distance of the wall on the left:" + str(dist_left))
+		print("Distance of the wall on the right:" + str(dist_right))
+```
+
+### main() ###
+
+in the `main()` function are made all the controls necessary for the correct behavior of the robot in the environment.
+
+First off all we need a `while` loop to make the robot move without stopping.
+
+```python
+def main():
+
+	while 1:
+```
+
+After this we need to call all the functions to check the tokens position, thanks to the `while` these information are updated in every loop.
+
+```python
+		dist_S, rot_S=find_silver_token()
+		dist_G, rot_G=find_golden_token_front()
+		dist_left=find_golden_token_left()
+		dist_right=find_golden_token_right()
+```
+Then is checked if the robot is close to a silver or to a golden token, if it isn't close to any token it moves straight.
+
+```python
+		if(dist_G>gold_th and dist_S>silver_th) or (dist_G>gold_th and dist_S==-1):
+			print("I go straight")
+			drive(100,0.05)
+```
+
+Tow if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position it adjusts its position in the environement calling the function adjust_position.
+
+```python
+		if(dist_S<silver_th and dist_S!=-1):
+			adjust_position(dist_S, rot_S)
+```
+
+finally if the robot is close to a wall (golden token), he has to turn to avoid hitting it we make the robot turns using the function avoid_walls, previously discussed.
+
+```python
+		if(dist_G<gold_th and dist_G!=-1):
+			avoid_walls(dist_left, dist_right)
+```
+
+**NOTE: all parameters in the code are selected, after several tests, to ensure the best possible behavior of the robot in the maze**
+
