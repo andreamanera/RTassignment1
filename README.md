@@ -5,19 +5,19 @@ This first assignment is based on a simple, portable robot simulator developed b
 Some of the arenas and the exercises have been modified for the Research Track I course.
 The task for this assignment is to make the robot move counterclockwisely in the environment made of golden and silver boxes. The robot has to catch the silver tokens and let them behind itself and it has also to avoid the golden tokens, that forms the walls of the environment in which the robot moves.
 
-* **The robot**
+* # **The robot**
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/robot.png">
 
-* **The silver token**
+* # **The silver token**
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token_silver.png">
 
-* **The golden token**
+* # **The golden token**
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token.png">
 
-* **The environment**
+* # **The environment**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/maze.png">
 
-* **The robot moving towards a silver token**
+* # **The robot moving towards a silver token**
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/image1.png">
 
 Installing and running
