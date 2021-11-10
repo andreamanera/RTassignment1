@@ -3,7 +3,7 @@ Research Track 1 first assignment
 
 This first assignment is based on a simple, portable robot simulator developed by [Student Robotics](https://studentrobotics.org).
 Some of the arenas and the exercises have been modified for the Research Track I course.
-The task for this assignment is to make the robot move counterclockwisely in the environment made of golden and silver boxes. The robot has to catch the silver tokens and let them behind itself and it has also to avoid the golden tokens, that forms the walls of the environment in which the robot moves.
+The task for this assignment is to make the robot move counterclockwisely in the environment made of golden and silver boxes. The robot has to catch the silver tokens and let them behind itself and it has also to avoid the golden tokens, that forms the walls of the maze in which the robot moves.
 
 * # **The robot**
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/robot.png">
@@ -119,8 +119,8 @@ while moving into the environment.
 the `drive()`  function was created to allow the robot to move straight, it can go forward, giving to `speed`parameter a positive value, or it can go backward giving to `speed` parameter a negative value
 
 * Arguments 
-  - `speed`, the linear velocity that we want the robot to assume.
-  - `seconds`, the amount of seconds we want to drive.
+  - `speed`: the linear velocity that we want the robot to assume.
+  - `seconds`: the amount of seconds we want to drive.
 * Returns
   - None.
 * Code
@@ -138,8 +138,8 @@ def drive(speed, seconds):
 The `turn()` functions permits the robot to turn on itself.
 
 * Arguments 
-  - `speed`, the angular velocity that we want the robot to assume.
-  - `seconds`, the amount of seconds we want the robot to turn.
+  - `speed`: the angular velocity that we want the robot to assume.
+  - `seconds`: the amount of seconds we want the robot to turn.
 * Returns
   - None.
 * Code
@@ -165,8 +165,8 @@ have as `marker_type` `MARKER_TOKEN_SILVER`, thanks to this function we can cons
 * Arguments 
   - None.
 * Returns
-  - `dist` distance of the closest silver token (-1 if no silver token is detected)
-  - `rot_y` angle between the robot and the silver token (-1 if no silver token is detected)
+  - `dist`: distance of the closest silver token (-1 if no silver token is detected)
+  - `rot_y`: angle between the robot and the silver token (-1 if no silver token is detected)
 * Code
 ```python
 def find_silver_token():
@@ -193,8 +193,8 @@ changes is the value of the parameters, first the `marker_type` is  `MARKER_TOKE
 * Arguments 
   - None.
 * Returns
-  - `dist` distance of the closest golden token (-1 if no golden token is detected)
-  - `rot_y` angle between the robot and the golden token (-1 if no golden token is detected)
+  - `dist`: distance of the closest golden token (-1 if no golden token is detected)
+  - `rot_y`: angle between the robot and the golden token (-1 if no golden token is detected)
 * Code
 ```python
 def find_golden_token_front():
@@ -221,7 +221,7 @@ decide if it needs to turn left or right. The mechanism is the same as before, b
 * Arguments 
   - None.
 * Returns
-  - `dist` distance of the closest golden token on robot's left (-1 if no golden token is detected)
+  - `dist`: distance of the closest golden token on robot's left (-1 if no golden token is detected)
 * Code
 ```python
 def find_golden_token_left():
@@ -237,7 +237,7 @@ def find_golden_token_left():
 ```
 ### find_golden_token_right() ###
 
-as mentioned above the function `find_golden_token_right()` is used for the same purpose as the function `find_golden_token_left()`, but since we are looking for token on robot's right the angle chosen is:
+As mentioned above the function `find_golden_token_right()` is used for the same purpose as the function `find_golden_token_left()`, but since we are looking for token on robot's right the angle chosen is:
 `70°<a<110°`.
 
 <p align="center">
@@ -248,7 +248,7 @@ as mentioned above the function `find_golden_token_right()` is used for the same
 * Arguments 
   - None.
 * Returns
-  - `dist` distance of the closest golden token on robot's right (-1 if no golden token is detected)
+  - `dist`: distance of the closest golden token on robot's right (-1 if no golden token is detected)
 * Code
 ```python
 def find_golden_token_right():
@@ -265,7 +265,7 @@ def find_golden_token_right():
 
 ### Grab() ###
 
-the `Grab()` function contains the routine to grab the token, after this the robot turns, drive for a short distance, leave the token and then it comes back to its original
+The `Grab()` function contains the routine to grab the token, after this the robot turns, drive for a short distance, leave the token and then it comes back to its original
 position.
 
 * Arguments 
@@ -286,11 +286,11 @@ def Grab():
 
 ### adjust_position(dist_S, rot_S) ###
 
-the `adjust_position(dist_S, rot_S)` function contains the routine to move the robot in the correct position to grab the token.
+The `adjust_position(dist_S, rot_S)` function contains the routine to move the robot in the correct position to grab the token.
 
 * Arguments 
-  - `dist_S` distance of the closest silver token
-  - `rot_S` angle between the robot and the silver token
+  - `dist_S`: distance of the closest silver token
+  - `rot_S`: angle between the robot and the silver token
 * Returns
   - None.
 * Code
@@ -312,12 +312,12 @@ def adjust_position(dist_S, rot_S):
 
 ### avoid_walls(dist_left, dist_right) ###
 
-the `avoid_walls(dist_left, dist_right)` function is necessary to check if the wall is closer to the right or to the left and then move the robot in the right way; if the robot is closer to the wall on the
+The `avoid_walls(dist_left, dist_right)` function is necessary to check if the wall is closer to the right or to the left and then move the robot in the right way; if the robot is closer to the wall on the
 left it turns right, if it is closer to the wall on the right it turn left.
 
 * Arguments 
-  - `dist_left` distance of the golden token on robot's left
-  - `dist_right` distance of the golden token on robot's right
+  - `dist_left`: distance of the golden token on robot's left
+  - `dist_right`: distance of the golden token on robot's right
 * Returns
   - None.
 * Code
@@ -340,7 +340,7 @@ def avoid_walls(dist_left, dist_right):
 
 ### main() ###
 
-in the `main()` function are made all the controls necessary for the correct behavior of the robot in the environment.
+In the `main()` function are made all the controls necessary for the correct behavior of the robot in the environment.
 
 First off all we need a `while` loop to make the robot move without stopping.
 
@@ -385,7 +385,7 @@ finally if the robot is close to a wall (golden token), he has to turn to avoid 
 
 ### Flow Chart ###
 
-Here you can find the  flow chart that explain the behavior that I wanted the robot to have. As you can see, in theory, there the robot stop moving only if we are close to a wall and the distance
+Here you can find the  flow chart that explain the behavior that I wanted the robot to have. As you can see, in theory, the robot stop moving only if we are close to a wall and the distance
 is the same from left and right wall, this is because this case, being unlikely to occur, was not taken into account.
 
 <p align="center">
@@ -397,9 +397,9 @@ is the same from left and right wall, this is because this case, being unlikely 
 This assignment was very useful to learn the basics of programming in python that i have not treated in bachelor's degree.
 I am quite satisfied with the final result, the robot does its job and usually continues to do it for more than one ride (continues to grab the silver tokens even after completing a full tour of the arena). 
 There are some small problems in the behavior of the robot, that could probably be solved by improving the code. The first one as said before is that if the robot were to be at the same distance from the
-left and the right walls it stop moving, this could be solved by rotating the robot with a small quantity of rotation on the left (or on the right if you prefer), so that in the next loop the robot will be 
-closer to the left (or the right) wall and then he will turn on his right (or left). I decided to not implement this in the code because the case in wich the right and left walls are at the same distance
-from the robot is so rare, and also because I don't know if the proposed solution could works. Another problem is that, if the silver token is too close to a wall, the robot detect both the silver token and
+left and the right wall it stop moving, this could be solved by rotating the robot with a small quantity of rotation on the left (or on the right if you prefer), so that in the next loop the robot will be 
+closer to the left (or the right) wall and then it will turn on his right (or left). I decided to not implement this in the code because the case in wich the right and left walls are at the same distance
+from the robot is so rare, and also because I don't know if the proposed solution could work. Another problem is that, if the silver token is too close to a wall, the robot detect both the silver token and
 the wall and often does not behave properly, this could probably be solved by changing the parameters, but the ones I chose seemed to me the best to move the robot in "normal" situations.
 
 **NOTE: the code was thought and discussed with the help of my colleague @LoreBene99**
