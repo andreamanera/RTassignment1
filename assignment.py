@@ -1,4 +1,4 @@
-#IMPORTING LIBRARIES AND DEFINING SOME DATA FOR ROBOT CONTROL
+#IMPORTING LIBRARIES AND DEFINING SOME PARAMETERS FOR ROBOT CONTROL
 
 from __future__ import print_function
 
@@ -123,9 +123,9 @@ def Grab():
  	if R.grab():
             print("Gotcha!")
 	    turn(30, 2)
-	    drive(20,2)
+	    drive(20,1)
 	    R.release()
-	    drive(-20,2)
+	    drive(-20,1)
 	    turn(-30,2)
 	    
 ################################################################################################################################
@@ -162,11 +162,11 @@ def avoid_walls(dist_left, dist_right):
 
 	if (dist_left > dist_right):
 		print("Turn left a bit, there is a wall on the right at this distance:" + str(dist_right))
-		turn(-20, 0.2)
+		turn(-25, 0.2)
 			
 	elif (dist_left < dist_right):
 		print("Turn right a bit, there is a wall on the left at this distance:" + str(dist_left))
-		turn(20,0.2)
+		turn(25,0.2)
 			
 	else:
 		print("Similar distance from left and right golden token")
@@ -210,6 +210,8 @@ def main():
 			
 		if(dist_G<gold_th and dist_G!=-1):
 			avoid_walls(dist_left, dist_right)
+
+################################################################################################################################
 			
 # MAIN CALL			
 				
