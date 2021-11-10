@@ -238,7 +238,7 @@ def find_golden_token_left():
 ### find_golden_token_right() ###
 
 as mentioned above the function `find_golden_token_right()` is used for the same purpose as the function `find_golden_token_left()`, but since we are looking for token on robot's right the angle chosen is:
-`70°<\alpha<110°`.
+`70°<$\alpha$<110°`.
 
 <p align="center">
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/findGtokenright.png">
@@ -367,14 +367,15 @@ Then is checked if the robot is close to a silver or to a golden token, if it is
 			drive(100,0.05)
 ```
 
-Now if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position it adjusts its position in the environement calling the function adjust_position.
+Now if the robot is close to a silver token it tries to catch it. if the robot is close to a token but in the wrong position it adjusts its position in the environement calling the function
+`adjust_position(dist_S, rot_S)`.
 
 ```python
 		if(dist_S<silver_th and dist_S!=-1):
 			adjust_position(dist_S, rot_S)
 ```
 
-finally if the robot is close to a wall (golden token), he has to turn to avoid hitting it we make the robot turns using the function avoid_walls, previously discussed.
+finally if the robot is close to a wall (golden token), he has to turn to avoid hitting it we make the robot turns using the function `avoid_walls(dist_left, dist_right)` previously discussed.
 
 ```python
 		if(dist_G<gold_th and dist_G!=-1):
