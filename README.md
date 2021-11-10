@@ -383,3 +383,8 @@ finally if the robot is close to a wall (golden token), he has to turn to avoid 
 
 **NOTE: all parameters in the code are selected, after several tests, to ensure the best possible behavior of the robot in the maze**
 
+### Flow Chart ###
+
+<p align="center">
+<img src="https://github.com/andreamanera/RTassignment1/blob/main/images/FlowChart_RTassignment1.png">
+</p>
