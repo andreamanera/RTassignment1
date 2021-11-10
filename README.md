@@ -15,10 +15,14 @@ The task for this assignment is to make the robot move counterclockwisely in the
     <img src="https://github.com/andreamanera/RTassignment1/blob/main/sr/token.png">
 
 * # **The environment**
+<p align="center">
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/maze.png">
+</p>
 
 * # **The robot moving towards a silver token**
+<p align="center">
 <img src="https://github.com/andreamanera/RTassignment1/blob/main/images/image1.png">
+</p>
 
 Installing and running
 ----------------------
@@ -182,6 +186,10 @@ def find_silver_token():
 The `find_golden_token_front()` function is used to find the golden tokens in front of the robot so that it can avoid them, the mechanism is the same as seen for the function `find_silver_token()`, what
 changes is the value of the parameters, first the `marker_type` is  `MARKER_TOKEN_GOLDEN` and also the angle change: `-35°<\alpha<35°`.
 
+<p align="center">
+<img src="https://github.com/andreamanera/RTassignment1/blob/main/images/findGtokenfront.png">
+</p>
+
 * Arguments 
   - None.
 * Returns
@@ -206,6 +214,10 @@ def find_golden_token_front():
 The `find_golden_token_left()` function, as the `find_golden_token_right()` function that will be commented on later, is necessary to find the distance between the robot and the wall to its left and so
 decide if it needs to turn left or right. The mechanism is the same as before, but as we look for tokens to the left of the robot the angle chosen is: `-110°<\alpha<-70°`
 
+<p align="center">
+<img src="https://github.com/andreamanera/RTassignment1/blob/main/images/findGtokenleft.png">
+</p>
+
 * Arguments 
   - None.
 * Returns
@@ -227,6 +239,11 @@ def find_golden_token_left():
 
 as mentioned above the function `find_golden_token_right()` is used for the same purpose as the function `find_golden_token_left()`, but since we are looking for token on robot's right the angle chosen is:
 `70°<\alpha<110°`.
+
+<p align="center">
+<img src="https://github.com/andreamanera/RTassignment1/blob/main/images/findGtokenright.png">
+</p>
+
 
 * Arguments 
   - None.
